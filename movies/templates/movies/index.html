@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>index</h1>
-  {{ genre_data }}
+  {% for genre in genre_data %}
+    <div><a href="{% url 'movies:get_movies' genre.genre_id %}">{{ genre.genre_name }}</a></div>
+  {% endfor %}
 {% endblock content %}

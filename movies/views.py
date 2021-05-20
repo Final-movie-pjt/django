@@ -13,3 +13,12 @@ def index(request):
 def init(request):
     makeDB()
     return redirect('movies:index')
+
+def get_movies(request, genre_id):
+    # 장르 아이디와 일치하는 영화를 가져오기
+    g = Genre.objects.get(genre_id=genre_id)
+    movies = g.movie_set.all()
+    context = {
+        'movies': movies,
+    }
+    return render(request, 'movies/genre.html', context)
