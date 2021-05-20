@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # 'channels',
     'accounts',
+    'movies',
     'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
