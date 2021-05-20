@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Movie, Genre
 from .makeDB import makeDB
 
-isDbUploaded = False
-
 # Create your views here.
 def index(request):
-    global isDbUploaded
-    if not isDbUploaded:
-        makeDB()
-        isDbUploaded = True
-    return render(request, 'movies/index.html')
+    genre_data = Genre.objects.all()
+    context = {
+        'genre_data': genre_data,
+    }
+    return render(request, 'movies/index.html', context)
+
+def init(request):
+    makeDB()
+    return redirect('movies:index')
