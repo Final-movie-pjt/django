@@ -22,3 +22,11 @@ def get_movies(request, genre_id):
         'movies': movies,
     }
     return render(request, 'movies/genre.html', context)
+
+
+def detail(request, pk):
+    movie = Movie.objects.get(pk = pk)
+    context = {
+        'movie' : movie,
+    }
+    return render(request, 'movies/detail.html', context)

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
   {% for movie in movies %}
-    <div>영화제목 : {{ movie.title }} 영화 장르 : {% for genre in movie.genres.all  %} {{ genre.genre_name }} {% endfor %}</div>
+    <div>
+     <a href=" {% url 'movies:detail' movie.pk %} ">영화제목 : {{ movie.title }} </a>영화 장르 : {% for genre in movie.genres.all  %} {{ genre.genre_name }} {% endfor %}
+    </div>
   {% endfor %}
 {% endblock content %}
