@@ -27,7 +27,7 @@ def create(request, movie_pk):
     }
     return render(request, 'community/create.html', context)
 
-
+@require_safe
 def detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
     comment_form = CommentForm()
@@ -38,6 +38,39 @@ def detail(request, pk):
         'review': review,
     }
     return render(request, 'community/detail.html', context)
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def update(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    if request.user == review.user:
+        if request.method == 'POST':
+            pass
+        else:
+            form = ReviewForm(instance=review)
+    else:
+        return redirect('community:detail', pk)
+    context = {
+        'form' : form,
+        'review': review,
+    }
+    return render(request, 'community/create.html', context)
+
+
+
+
+
+
+@require_POST
+def delete(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    if request.user.is_authenticated:
+        if request.user == review.user:
+            review.delete()
+            return redirect('movies:detail')
+
+
 
 @require_POST
 def comments_create(request, pk):

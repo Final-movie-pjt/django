@@ -2,6 +2,16 @@
 {% block content %}
   <div>
     <p>리뷰 제목 : {{ review.title }}</p>
+    {% if request.user == review.user %}
+      <form action=" {% url 'community:update' review.pk %} ">
+        <button class="btn btn-primary">UPDATE</button>
+      </form>
+      
+      <form action=" {% url 'community:delete' review.pk %} ", method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger">DELETE</button>
+      </form>
+    {% endif %}
     <form class="like-form" data-review-id="{{ review.pk }}">
       {% csrf_token %}
       {% if user in review.like_users.all %}
