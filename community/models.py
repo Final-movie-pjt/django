@@ -1,14 +1,14 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.deletion import CASCADE
-
+from movies.models import Movie
 
 
 # Create your models here.
 
 class Review(models.Model):
     title = models.CharField(max_length=200)
-    movie_title = models.CharField(max_length=100)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE )
     content = models.TextField()
     rank = models.PositiveSmallIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
