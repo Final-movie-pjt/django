@@ -5,8 +5,8 @@ from .env import TMDB_API_KEY
 
 def makeDB():
     API_KEY = TMDB_API_KEY
-    GENRE_URL = f'https://api.themoviedb.org/3/genre/movie/list?api_key={API_KEY}&language=en-US'
-    POPULAR_MOVIE_URL = f'https://api.themoviedb.org/3/movie/popular?api_key={API_KEY}&language=en-US&page='
+    GENRE_URL = f'https://api.themoviedb.org/3/genre/movie/list?api_key={API_KEY}&language=ko-KR'
+    POPULAR_MOVIE_URL = f'https://api.themoviedb.org/3/movie/popular?api_key={API_KEY}&language=ko-KR&page='
     
     # with open('movies\genres.json') as json_file:
     #     genre_data = json.load(json_file)['genres']
