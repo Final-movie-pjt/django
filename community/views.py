@@ -59,17 +59,17 @@ def like(request, pk):
         review = get_object_or_404(Review, pk=pk)
         user = request.user
         # 좋아요 취소
-        if review.like_user.filter(pk=user.pk).exist():
-            review.like_user.remove(user)
+        if review.like_users.filter(pk=user.pk).exists():
+            review.like_users.remove(user)
             liked = False
         # 좋아요
         else:
-            review.like_user.add(user)
+            review.like_users.add(user)
             liked = True
 
         like_status = {
             'liked' : liked,
-            'count' : review.like_user.count(),
+            'count' : review.like_users.count(),
         }
         return JsonResponse(like_status)
     # 로그인 되지 않은 경우
