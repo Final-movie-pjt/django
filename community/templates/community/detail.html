@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div>
+    <p>리뷰 제목 : {{ review.title }}</p>
+    {% for comment in comments %}
+      {{ comment.content }}
+    {% endfor %}
+  </div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ comment_form }} 
+    <input type="submit">
+  </form>
+{% endblock content %}

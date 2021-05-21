@@ -1,5 +1,7 @@
+from django.db import models
 from django.shortcuts import redirect, render
 from .models import Movie, Genre
+from community.models import Review
 from .makeDB import makeDB
 
 # Create your views here.
@@ -26,7 +28,9 @@ def get_movies(request, genre_id):
 
 def detail(request, pk):
     movie = Movie.objects.get(pk = pk)
+    reviews = movie.review_set.all()
     context = {
         'movie' : movie,
+        'reviews': reviews,
     }
     return render(request, 'movies/detail.html', context)

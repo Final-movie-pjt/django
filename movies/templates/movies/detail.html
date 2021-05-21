@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {{ movie.title }}
+  <div>
+    {{ movie.title }}
+    <a href="{% url 'community:create' movie.pk %}">리뷰 생성</a>
+  </div>
+  <div>
+    {% for review in reviews  %}
+      <a href="{% url 'community:detail' review.pk %}">{{ review.title }}</a>
+    {% endfor %}
+  </div>
 {% endblock content %}
