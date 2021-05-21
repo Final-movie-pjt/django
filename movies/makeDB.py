@@ -1,5 +1,4 @@
 from .models import Movie, Genre
-import json
 import requests
 from .env import TMDB_API_KEY
 
@@ -31,9 +30,9 @@ def makeDB():
             released_date =  movie.get('release_date')
             poster_path = movie.get('poster_path')
             genre_ids = movie.get('genre_ids')
-            m = Movie.objects.create(title=title, overview=overview, released_date=released_date, poster_path=poster_path)
-
-            # 중간 테이블에 데이터 넣기
-            for genre in genre_ids:
-                g = Genre.objects.get(genre_id=genre)
-                m.genres.add(g)
+            if title and overview and released_date and poster_path and genre_ids:
+                m = Movie.objects.create(title=title, overview=overview, released_date=released_date, poster_path=poster_path)
+                # 중간 테이블에 데이터 넣기
+                for genre in genre_ids:
+                    g = Genre.objects.get(genre_id=genre)
+                    m.genres.add(g)
