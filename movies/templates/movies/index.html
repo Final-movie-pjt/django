@@ -1,7 +1,123 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>index</h1>
-  {% for genre in genre_data %}
-    <div><a href="{% url 'movies:get_movies' genre.genre_id %}">{{ genre.genre_name }}</a></div>
-  {% endfor %}
+    <div class="row">
+      <div class="col-10">
+        <h3 class="mb-3">어떤 영화를 보고 싶으세요?</h3>
+      </div>
+      <!-- 화살표버튼시작-->
+      <div class="col-2 ps-5 me-0 pe-0">
+        <a class="btn btn-secondary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-bs-slide="prev">
+          <i class="fa fa-arrow-left"></i>
+        </a>
+        <a class="btn btn-secondary mb-3 " href="#carouselExampleIndicators2" role="button" data-bs-slide="next">
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+      <!-- 화살표 버튼 종료 -->
+      <div class="col-12">
+        <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                {% for genre in genre_data|slice:":3"%}
+                  <div class="col-md-4 mb-3">
+                    <a href="{% url 'movies:get_movies' genre.genre_id %}">
+                      <div class="card">
+                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                        <div class="card-body">
+                          <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                {% for genre in genre_data|slice:"3:6"%}
+                  <div class="col-md-4 mb-3">
+                  <a href="{% url 'movies:get_movies' genre.genre_id %}">
+                    <div class="card">
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                      <div class="card-body">
+                        <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                {% for genre in genre_data|slice:"6:9"%}
+                  <div class="col-md-4 mb-3">
+                  <a href="{% url 'movies:get_movies' genre.genre_id %}">
+                    <div class="card">
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                      <div class="card-body">
+                        <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                {% for genre in genre_data|slice:"9:12"%}
+                  <div class="col-md-4 mb-3">
+                  <a href="{% url 'movies:get_movies' genre.genre_id %}">
+                    <div class="card">
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                      <div class="card-body">
+                        <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                {% for genre in genre_data|slice:"12:15"%}
+                  <div class="col-md-4 mb-3">
+                    <a href="{% url 'movies:get_movies' genre.genre_id %}">
+                      <div class="card">
+                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                        <div class="card-body">
+                          <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                {% for genre in genre_data|slice:"15:18"%}
+                  <div class="col-md-4 mb-3">
+                    <a href="{% url 'movies:get_movies' genre.genre_id %}">
+                      <div class="card">
+                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                        <div class="card-body">
+                          <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div> <!-- carousel inner 종료-->
+       </div>
+     </div>
+  </div>
+
+
 {% endblock content %}
+
