@@ -132,3 +132,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 # TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
+
+# SESSION_COOKIE_AGE = 20
+# SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'movieTalk' / 'static',
+    ]

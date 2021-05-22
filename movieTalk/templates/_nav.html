@@ -1,17 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
+    <a class="navbar-brand ms-1" href="{% url 'movies:index' %}">MovieTalk</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav me-auto">
         {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <form class="nav-link" action="{% url 'accounts:logout' %}" method="POST">
+            <a href="" class="nav-link">{{ user.username }}님의 프로필</a>
+          </li>
+          <li class="nav-item">
+            <form action="{% url 'accounts:logout' %}" method="POST">
               {% csrf_token %}
-              <input type="submit" value="logout">
+              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
             </form>
           </li>
+       
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href=" {% url 'accounts:login' %} ">Login</a>
@@ -21,6 +27,10 @@
           </li>
         {% endif %}
       </ul>
+      <form class="d-flex me-2">
+        <input class="form-control me-sm-2" type="text" placeholder="어떤 영화를 찾으세요?">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>
