@@ -46,7 +46,10 @@ def update(request, pk):
     review = get_object_or_404(Review, pk=pk)
     if request.user == review.user:
         if request.method == 'POST':
-            pass
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                form.save()
+                return redirect('community:detail', review.pk)
         else:
             form = ReviewForm(instance=review)
     else:
@@ -57,20 +60,15 @@ def update(request, pk):
     }
     return render(request, 'community/create.html', context)
 
-
-
-
-
-
 @require_POST
 def delete(request, pk):
     review = get_object_or_404(Review, pk=pk)
+    temp = review.movie
+    m = temp
     if request.user.is_authenticated:
         if request.user == review.user:
             review.delete()
-            return redirect('movies:detail')
-
-
+            return redirect('movies:detail', m.pk)
 
 @require_POST
 def comments_create(request, pk):

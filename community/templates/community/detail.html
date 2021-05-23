@@ -32,6 +32,11 @@
   </div>
   <hr>
   <div>
+    <p>{{ review.content }}</p>
+    <a href="{% url 'movies:detail' review.movie.pk %}">뒤로 가기</a>
+  </div>
+  <hr>
+  <div>
     <form action=" {% url 'community:comments_create' review.pk %} " method="POST">
       {% csrf_token %}
       <span>{{ comment_form }}</span>
