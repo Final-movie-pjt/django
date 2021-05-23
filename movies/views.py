@@ -22,6 +22,7 @@ def get_movies(request, genre_id):
     movies = g.movie_set.all()
     context = {
         'movies': movies,
+        'genre': g,
     }
     return render(request, 'movies/genre.html', context)
 

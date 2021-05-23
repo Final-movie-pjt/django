@@ -21,7 +21,8 @@ def login(request):
     else:
         form = AuthenticationForm()
     context = {
-        'form': form
+        'form': form,
+        'submit': '로그인',
     }
     return render(request, 'accounts/form.html', context)
 
@@ -49,6 +50,7 @@ def signup(request):
         form = CustomUserCreationForm()
     context = {
         'form': form,
+        'submit': '회원가입',
     }
     return render(request, 'accounts/form.html', context)
 

@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% for movie in movies %}
-    <div>
-     <a href=" {% url 'movies:detail' movie.pk %} ">영화제목 : {{ movie.title }} </a>영화 장르 : {% for genre in movie.genres.all  %} {{ genre.genre_name }} {% endfor %}
-    </div>
-  {% endfor %}
+  <h3 class="mb-3">{{ genre.genre_name }}</h3>
+  <hr>
+
+  <div class="row">
+    {% for movie in movies %}
+      <div class="col-4">
+        <div class="card mb-3" style="max-width: 20rem;">
+          <a href="{% url 'movies:detail' movie.pk %}">
+            <div class="card-body">
+              <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}">
+              <h5 class="card-title">{{ movie.title }}</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+    {% endfor %}  
+  </div>
+
 {% endblock content %}

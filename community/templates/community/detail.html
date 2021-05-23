@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
   <div>
-    <p>리뷰 제목 : {{ review.title }}</p>
-    {% if request.user == review.user %}
-      <form action=" {% url 'community:update' review.pk %} ">
-        <button class="btn btn-primary">UPDATE</button>
-      </form>
-      
-      <form action=" {% url 'community:delete' review.pk %} ", method="POST">
-        {% csrf_token %}
-        <button class="btn btn-danger">DELETE</button>
-      </form>
-    {% endif %}
-    <form class="like-form" data-review-id="{{ review.pk }}">
+    <div class="row">
+      <h4 class="col-auto" style="display: inline">제목 : {{ review.title }}</h4>
+      {% if request.user == review.user %}
+      <div class="col-auto offset-6" style="display: inline">
+        <form style="display: inline" action=" {% url 'community:update' review.pk %} ">
+          <button class="btn btn-outline-secondary">UPDATE</button>
+        </form>
+        <form style="display: inline" action=" {% url 'community:delete' review.pk %} " method="POST">
+          {% csrf_token %}
+          <button class="btn btn-outline-danger">DELETE</button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+    <hr>
+    <form style="display: inline" class="like-form" data-review-id="{{ review.pk }}">
       {% csrf_token %}
       {% if user in review.like_users.all %}
         <button class="btn btn-link">
@@ -25,20 +29,31 @@
       {% endif %}
     </form>
     <span id="like-count-{{ review.pk }}">{{ review.like_users.all|length }}</span> 명이 이 글을 좋아합니다. <br>
-    <hr>
   </div>
+  <hr>
   <div>
     <form action=" {% url 'community:comments_create' review.pk %} " method="POST">
       {% csrf_token %}
-      {{ comment_form }} 
-      <input type="submit">
+      <span>{{ comment_form }}</span>
+      <button  type="submit" class="btn btn-secondary ms-3">댓글 작성</button>
     </form>
-    {% for comment in comments %}
-      {{ comment.content }}
-    {% endfor %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">작성자</th>
+        <th scope="col">댓글</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comment in comments  %}
+        <tr class="table-light">
+        <th scope="row">{{ comment.user.username }}</th>
+        <td>{{ comment.content}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
   </div>
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>

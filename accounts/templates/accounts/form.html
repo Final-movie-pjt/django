@@ -2,12 +2,10 @@
 {% load bootstrap5 %}
 
 {% block content %}
-  <div class="row align-items-center">
-  <form class="form-group col-auto" action="" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form }}
-      <input type="submit">
-    </form>
-  </div>
+  <form class="form-group" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-secondary">{{ submit }}</button>
+  </form>
  
 {% endblock content %}
