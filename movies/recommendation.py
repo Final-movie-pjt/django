@@ -6,11 +6,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
 
 
-
-movies = Movie.objects.all()
-df = read_frame(movies)
 def recommend():
-
+    movies = Movie.objects.all()
+    df = read_frame(movies)
     # 영화 장르 리스트 불러오기
     g_list = []
     for movie in movies:
@@ -55,7 +53,3 @@ def recommend():
                 movie.recommend_movies.add(m)
         except ValueError:
             continue
-
-
-
-

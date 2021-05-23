@@ -49,4 +49,9 @@
       </table>
     </div>
   </div>
+  <div>
+    {% for recommend_movie  in movie.recommend_movies.all %}
+      {{ recommend_movie.title }}
+    {% endfor %}
+  </div>
 {% endblock content %}

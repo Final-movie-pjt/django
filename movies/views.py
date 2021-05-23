@@ -13,7 +13,7 @@ def index(request):
     }
     return render(request, 'movies/index.html', context)
 
-def init(request):
+def get_api(request):
     makeDB()
     return redirect('movies:index')
 
