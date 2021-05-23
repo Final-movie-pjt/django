@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from .models import Movie, Genre
 from community.models import Review
 from .makeDB import makeDB
+from .recommendation import recommend as reco
 
 # Create your views here.
 def index(request):
@@ -35,3 +36,8 @@ def detail(request, pk):
         'reviews': reviews,
     }
     return render(request, 'movies/detail.html', context)
+
+
+def recommend(request):
+    reco()
+    return redirect('movies:index')

@@ -30,9 +30,11 @@ def makeDB():
             released_date =  movie.get('release_date')
             poster_path = movie.get('poster_path')
             genre_ids = movie.get('genre_ids')
-            if title and overview and released_date and poster_path and genre_ids:
-                m = Movie.objects.create(title=title, overview=overview, released_date=released_date, poster_path=poster_path)
-                # 중간 테이블에 데이터 넣기
+            vote_average = movie.get('vote_average')
+            vote_count = movie.get('vote_count')
+            if title and overview and released_date and poster_path and genre_ids and vote_average and vote_count:
+                m = Movie.objects.create(title=title, overview=overview, released_date=released_date, poster_path=poster_path, vote_average=vote_average, vote_count=vote_count)
+                # 중개 테이블에 데이터 넣기
                 for genre in genre_ids:
                     g = Genre.objects.get(genre_id=genre)
                     m.genres.add(g)
