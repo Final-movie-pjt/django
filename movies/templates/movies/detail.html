@@ -27,6 +27,7 @@
       <h4 style="display: inline">리뷰</h4>
       <span class="ms-3"><a href="{% url 'community:create' movie.pk %}">리뷰 작성하기</a></span>
     </div>
+    <hr>
     <br>
     <div>
       <table class="table table-hover">
@@ -49,9 +50,14 @@
       </table>
     </div>
   </div>
-  <div>
+  <div class="d-flex justify-content-center row row-cols-1">
+    <h5>추천 영화</h5>
     {% for recommend_movie  in movie.recommend_movies.all %}
-      {{ recommend_movie.title }}
+      <div class="card" style="width: 13rem;">
+        <a href=" {% url 'movies:detail' recommend_movie.pk  %} ">
+          <img src="https://image.tmdb.org/t/p/w500/{{ recommend_movie.poster_path }}" class="card-img-top" alt="...">
+        </a>
+      </div>
     {% endfor %}
   </div>
 {% endblock content %}
