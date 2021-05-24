@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h5>방 이름: <span id="room-name" value="{{ room.pk }}" user="{{ user.username }}">{{ room.room_name }}</span></h5>
+        <h5>{{ user.username }}님 반갑습니다.</h5>
+        <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+        <input id="chat-message-input" type="text" size="100"><br>
+        <input id="chat-message-submit" type="button" value="Send">
+
+    </div>
+
+    <!-- {{ room_name|json_script:"room-name" }} -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const roomId = document.getElementById('room-name').getAttribute('value');
+        const username = document.querySelector('#room-name').getAttribute('user');
+
+        // 클라이언트 쪽에서 서버와 통신할 웹소켓을 만들고
+        // ws 프로토콜 사용(wss와 ws는 https와 http와의 관계와 유사)
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomId
+            + '/'
+        );
+
+        // 서버로부터 데이터 수신
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log(data)
+            document.querySelector('#chat-log').value += (data.username + ' : ');
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        // 연결 시도 중 에러가 발생하면, 먼저 'error'라는 이름의 이벤트가 WebSocket오브젝트로 전달
+        // 그로 인해 onerror 핸들러 실행
+        // 그 후에 연결이 종료되는 이유를 가리키는 closeevent가 WebSocket오브젝트로 전달되고
+        // 그로 인해 onclose가 실행
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        // 서버에 데이터를 전송
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'username': username,
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+{% endblock content %}
+
