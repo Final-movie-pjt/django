@@ -44,15 +44,14 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)        
         if form.is_valid():
             user = form.save()
-            auth_login(request, user)
+            auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('movies:index')
     else:
         form = CustomUserCreationForm()
     context = {
         'form': form,
-        'submit': '회원가입',
     }
-    return render(request, 'accounts/form.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 @login_required
@@ -69,6 +68,14 @@ def update(request):
         'form': form,
     }
     return render(request, 'accounts/update.html', context)
+
+
+@require_POST
+def delete(request):
+    if request.user.is_authenticated:
+        request.user.delete()
+        auth_logout(request)
+    return redirect('movies:index')
 
 
 @login_required

@@ -1,11 +1,66 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
+{% load socialaccount %}
+{% load static %}
+
 
 {% block content %}
-  <form class="form-group" action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-outline-secondary">{{ submit }}</button>
-  </form>
+  <div class="out-layer">
+    <div class="login-div">
+      <form class="form-group" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="col-sm-10">
+            <label class="form-label mt-4">ID</label>
+            <div>
+              {{ form.username }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="col-sm-10">
+              <label class="form-label mt-4">Password</label>
+              {{ form.password }}
+            </div>  
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center gap-3 p-3">
+          <button type="submit" class="btn btn-outline-secondary ">{{ submit }}</button>
+          <button type="button" class="btn btn-outline-info">
+            <a href=" {% url 'accounts:signup' %} ">회원가입</a>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="p-2">
+      <a href=" {% provider_login_url "google" next="/" %}"><img src=" {% static 'btn_google_login.png' %} " alt=""></a>
+    </div> 
+    <div class="p-2">
+      <a href=" {% provider_login_url "naver" next="/" %}"><img src=" {% static 'btnG_naver.png' %} " alt=""></a>
+    </div> 
+  </div>
+  <style>
+    .login-div {
+      max-width: 430px;
+      padding: 35px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      }
+    
+    .out-layer {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+    img {
+      width: 191px;
+      height: 46px;
+    }
+    a { text-decoration:none !important}
+  </style>
  
 {% endblock content %}

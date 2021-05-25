@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>회원정보수정</h3>
-<form action="" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-outline-secondary">수정</button>
-</form>
+<div class="p-2">
+  <h3>회원정보수정</h3>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-secondary">수정</button>
+  </form>
+</div>
+<div class="p-2">
+  <form action=" {% url 'accounts:delete' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="회원 탈퇴" class='btn btn-outline-danger'>
+  </form>
+</div>
 {% endblock %}
