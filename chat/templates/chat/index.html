@@ -3,25 +3,25 @@
     <div class="container row">
         <div class="section-title col-6 offset-3">
             <h4>MovieTalk</h4>
-            <h5>실시간으로 친구와 영화 이야기를 나눠보세요</h5>
+            <h5 class="my-3">실시간으로 친구와 영화 이야기를 나눠보세요</h5>
         </div>
-        <div class="row col-6 offset-3">
+        <div class="row col-6 offset-3 my-3">
             <form action="{% url 'chat:create' %}" method="POST">
                 {% csrf_token %}
-                <div class="section-body col-6 offset-2">
+                <div class="section-body col-6">
                     <div class="field">
                         <label>Room name</label>
                             <div class="control">
-                                <input name="roomname" type="text" placeholder="Room name" id="room-name-input">
+                                <input name="roomname" type="text" placeholder="채팅방 이름을 입력해주세요" id="room-name-input" size="40">
                             </div>
                     </div>
-                    <div class="field">
+                    <!-- <div class="field">
                         <label>Username</label>
                             <div class="control">
                                 <input name="username" type="text" placeholder="Username" id="username-input" name="user-name">
                             </div>
-                    </div>
-                    <button  type="submit" class="btn btn-secondary ms-3">입장하기</button>
+                    </div> -->
+                    <button  type="submit" class="btn btn-secondary  my-3">입장하기</button>
                 </div>
             </form>
         </div>
@@ -31,8 +31,8 @@
             <hr>
             <div>
             {% for room in rooms %}
-                <div>{{ room.room_name }}</div>
-                <div>현재 참여 인원 : {{ room.count_user }}</div>
+                <div>{{ room.room_name }} <a href="{% url 'chat:room' room.pk %}">입장하기</a></div>
+                <div>현재 참여 인원 : {{ room.count_users }}</div>
             {% endfor %}
             </div>
         </div>

@@ -5,7 +5,8 @@
         <h5>{{ user.username }}님 반갑습니다.</h5>
         <textarea id="chat-log" cols="100" rows="20"></textarea><br>
         <input id="chat-message-input" type="text" size="100"><br>
-        <input id="chat-message-submit" type="button" value="Send">
+        <input class="mt-3" id="chat-message-submit" type="button" value="Send">
+        <button id="chat-close"><a id="chat-close-btn" href="{% url 'chat:index' %}">채팅방 나가기</a></button>
 
     </div>
 
@@ -38,6 +39,11 @@
         // 그로 인해 onerror 핸들러 실행
         // 그 후에 연결이 종료되는 이유를 가리키는 closeevent가 WebSocket오브젝트로 전달되고
         // 그로 인해 onclose가 실행
+        const chatClose = document.querySelector('#chat-close').onclick = function(e) {
+            chatSocket.close();
+            console.log('채팅방이 닫힘');
+        }
+
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };
@@ -60,5 +66,12 @@
             messageInputDom.value = '';
         };
     </script>
+
+    <style>
+    #chat-close-btn {
+        text-decoration: none;
+        color: black;
+    }
+    </style>
 {% endblock content %}
 
