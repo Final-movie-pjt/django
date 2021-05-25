@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if error|length == 0 %}
+    <h3 class="mb-3">검색 결과 : {{ search_word }}</h3>
+  {% else %}
+    <h3>결색 결과 : {{ search_word }}{{ error }}</h3>
+  {% endif %}
+  <hr>
+  {% if message|length != 0 %}
+    <h5>{{ message }}</h5>
+  {% endif %}
+
+  <div class="row">
+    {% for movie in movie_list %}
+      <div class="col-4">
+        <div class="card mb-3" style="max-width: 20rem;">
+          <a href="{% url 'movies:detail' movie.pk %}">
+            <div class="card-body">
+              <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}">
+            </div>
+          </a>
+        </div>
+      </div>
+    {% endfor %}  
+  </div>
+
+{% endblock content %}

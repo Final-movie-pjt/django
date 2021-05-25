@@ -36,8 +36,8 @@
         {% endif %}
           
       </ul>
-      <form class="d-flex me-2">
-        <input class="form-control me-sm-2" type="text" placeholder="어떤 영화를 찾으세요?">
+      <form class="d-flex me-2" action="{% url 'movies:search' %}" method="GET">
+        <input class="form-control me-sm-2" type="text" name="search-word" placeholder="어떤 영화를 찾으세요?">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
