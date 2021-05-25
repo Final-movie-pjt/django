@@ -4,13 +4,24 @@ from .models import Movie, Genre
 from community.models import Review
 from .makeDB import makeDB
 from .recommendation import recommend as reco
+from chat.models import Room
 
 # Create your views here.
 def index(request):
+    # 장르 데이터
     genre_data = Genre.objects.all()
+
+    # 채팅방 목록 가져오기
+    rooms = Room.objects.filter(count_users__lte=0)
+    for room in rooms:
+        room.delete()
+    rooms = Room.objects.all()
+
     context = {
         'genre_data': genre_data,
+        'rooms': rooms,
     }
+
     return render(request, 'movies/index.html', context)
 
 def get_api(request):

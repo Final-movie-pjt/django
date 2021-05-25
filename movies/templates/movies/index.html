@@ -23,7 +23,7 @@
                   <div class="col-md-4 mb-3">
                     <a href="{% url 'movies:get_movies' genre.genre_id %}">
                       <div class="card">
-                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.1.poster_path }}">
                         <div class="card-body">
                           <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
                         </div>
@@ -39,7 +39,11 @@
                   <div class="col-md-4 mb-3">
                   <a href="{% url 'movies:get_movies' genre.genre_id %}">
                     <div class="card">
+                    {% if genre.genre_id == 99 %}
                       <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                    {% else %}
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.1.poster_path }}">
+                    {% endif %}
                       <div class="card-body">
                         <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
                       </div>
@@ -55,7 +59,7 @@
                   <div class="col-md-4 mb-3">
                   <a href="{% url 'movies:get_movies' genre.genre_id %}">
                     <div class="card">
-                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.1.poster_path }}">
                       <div class="card-body">
                         <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
                       </div>
@@ -71,7 +75,7 @@
                   <div class="col-md-4 mb-3">
                   <a href="{% url 'movies:get_movies' genre.genre_id %}">
                     <div class="card">
-                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.1.poster_path }}">
                       <div class="card-body">
                         <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
                       </div>
@@ -87,7 +91,7 @@
                   <div class="col-md-4 mb-3">
                     <a href="{% url 'movies:get_movies' genre.genre_id %}">
                       <div class="card">
-                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.1.poster_path }}">
                         <div class="card-body">
                           <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
                         </div>
@@ -103,7 +107,7 @@
                   <div class="col-md-4 mb-3">
                     <a href="{% url 'movies:get_movies' genre.genre_id %}">
                       <div class="card">
-                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.0.poster_path }}">
+                        <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{ genre.movie_set.all.1.poster_path }}">
                         <div class="card-body">
                           <h4 class="card-title text-center">{{ genre.genre_name }}</h4>
                         </div>
@@ -118,8 +122,29 @@
      </div>
   </div>
 
+  <hr>
+  <!-- 로그인한 유저 확인-->
+  <div>
+    <h4>영화 이야기방</h4>
+    <hr>
+    <div>
+      {% for room in rooms %}
+        <div>{{ room.room_name }} <a href="{% url 'chat:room' room.pk %}">입장하기</a></div>
+        <div>현재 참여 인원 : {{ room.count_users }}</div>
+      {% endfor %}
+    </div>
+    <hr>
+    <div>
+      <a href="{% url 'chat:index' %}">새로운 방 만들기</a>
+    </div>
+  </div>
+
   <style>
     a { text-decoration:none !important }
+
+    .img-fluid {
+      height: 30em !important;
+    }
   </style>
 
 

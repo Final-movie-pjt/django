@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container row">
+        <div class="section-title col-6 offset-3">
+            <h4>MovieTalk</h4>
+            <h5 class="my-3">실시간으로 친구와 영화 이야기를 나눠보세요</h5>
+        </div>
+        <div class="row col-6 offset-3 my-3">
+            <form action="{% url 'chat:create' %}" method="POST">
+                {% csrf_token %}
+                <div class="section-body col-6">
+                    <div class="field">
+                        <label>Room name</label>
+                            <div class="control">
+                                <input name="roomname" type="text" placeholder="채팅방 이름을 입력해주세요" id="room-name-input" size="40">
+                            </div>
+                    </div>
+                    <!-- <div class="field">
+                        <label>Username</label>
+                            <div class="control">
+                                <input name="username" type="text" placeholder="Username" id="username-input" name="user-name">
+                            </div>
+                    </div> -->
+                    <button  type="submit" class="btn btn-secondary  my-3">입장하기</button>
+                </div>
+            </form>
+        </div>
+         <div class="col-6 offset-3">
+            <hr>
+            <h5>영화 이야기방</h5>
+            <hr>
+            <div>
+            {% for room in rooms %}
+                <div>{{ room.room_name }} <a href="{% url 'chat:room' room.pk %}">입장하기</a></div>
+                <div>현재 참여 인원 : {{ room.count_users }}</div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
