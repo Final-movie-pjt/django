@@ -1,0 +1,16 @@
+[Unit]
+Description=uWSGI Service
+After=syslog.target
+
+[Service]
+User=ubuntu
+ExecStart=/home/ubuntu/movieTalk/venv/bin/uwsgi -i /home/ubuntu/movieTalk/.config/uwsgi/movieTalk.ini
+
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
