@@ -16,11 +16,11 @@
 
 #### 1. 이슈 트랙킹 + 일정 관리 : Trello
 
-![img](README.assets/PdMhuyUoIE7tbfheKEj6wNFIqzZmaJ9WXQZweXBcD6Jde-jnuGoubmcs9nmipNpcseWkP4uE4cVYzMSd6wT9TNl67yvVW_6DjxCBMOrXngas43-tkXalriSnFEZj_kd7JanIdnOqU3Q)
+![img](README.assets/trello.jpg)
 
 #### 2. Git Commit Convention : Udacity
 
-![img](README.assets/my7OmF07xusm9Go3YzkYFXRNhRCwdbJ1PdmZKJ1jreqDlBG6sTlkTa4VmlKTjagss6G8LBhWi7dkcw4vS7HQ0I87YpcKjVlWo5BcxQAYTTdD4qlxZS04tbXhY9EB0hv7yXSh6p7ThvU)
+![img](README.assets/udacity.jpg)
 
 
 
@@ -53,7 +53,7 @@
 
 ### ERD
 
-![img](README.assets/b_H0o_xv6iWYjrZ4Qd4YVSWN09X-bJXEiiFb06-36OpewzuVrtFHXgtvYdXfo5QBI33SrY4gJFlpwLZcADlgHnG8J4g7pGKlfPQuF8_3_S_tpEhER28Rz_AYn0QPk1nDccIHvuKPg2M)
+![img](README.assets/erd.jpg)
 
 ### 기술 스택
 
@@ -119,7 +119,7 @@
 
   - Title이나 Overview에 검색 단어가 있으면 결과를 보여주고, 결과가 없으면 자체 추천 영화를 제시
 
-    ![img](README.assets/ud0cfPV9Q3egCWCvfb0wFybnmmKZ0MhsjD2mvewX3mONxFzjXPpwKPW-j8OUZ44z_svGDhgspl2-QnppGWmEwIq9T_vUzA87CAs3mlMiFphyni9BhlcifYZn-ZdU3W5ytsku5pIrinw)
+    ![img](README.assets/image.jpg)
 
 
 
