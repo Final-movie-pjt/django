@@ -1,0 +1,15 @@
+[Unit]
+Description=daphne daemon
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/movieTalk
+ExecStart=/home/ubuntu/movieTalk/venv/bin/daphne -b 0.0.0.0 -p 8001 --access-log /home/ubuntu/movieTalk/log/daphne/daphne.log movieTalk.asgi:application
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
